@@ -28,35 +28,18 @@ Once you've downloaded the code and you've reached the "4.3 Select a board" step
 Add the overlay:
 ----------------
 
-To build for the Raspberry Pi, you'll need to use the raspberrypi overlay provided by this repo. Until this is merged upstream into the Chromium OS project, you'll have to copy it manually across.
+The raspberrypi overlay is already part of ChromiumOS, although it does not build X or Chromium.
 
-Find the folder named "overlays" in the "src" folder of the code you checked out. You'll see a number of folders with names starting "overlay-". Place the overlay-raspberrypi folder in this folder alongside the other overlays.
+To build for the Raspberry Pi2B, you'll need to use the raspberrypi2 overlay provided by this repo. Until this is merged upstream into the Chromium OS project, you'll have to copy it manually across.
 
-Toolchain setup:
-----------------
+Find the folder named "overlays" in the "src" folder of the code you checked out. You'll see a number of folders with names starting "overlay-". Place the overlay-raspberrypi2 folder in this folder alongside the other overlays.
 
-For this step and all following steps you MUST be inside the CrOS chroot. Refer to developer guide section 4.2 if you're not sure how to do this. You only need to do this once (unless you nuke your chroot). To build/install the toolchain, we must be root. To become root, type:
-
-<pre>
-sudo -i
-</pre>
-
-Once you're root, build the toolchain by typing:
-
-<pre>
-USE="-thumb -hardened hardfp" FEATURES="splitdebug" crossdev -S -t armv6j-cros-linux-gnueabi --ex-gdb
-</pre>
-
-This might take some time, so go get a coffee. Once that command finishes successuflly, we don't need to be root anymore, so drop root by running:
-
-<pre>
-exit
-</pre>
+To build for RPI 2B use "raspberrypi2" instead of "raspberrypi" in the following guide.
 
 Board setup:
 ------------
 
-Once again, you only need to run this once (unless you nuke the chroot):
+You only need to run this once (unless you nuke the chroot):
 
 <pre>
 ./setup_board --board=raspberrypi
@@ -82,10 +65,10 @@ Building an image:
 Before we can build an image, we need to build all the required packages. Enter the following command to build those (and pray everything compiles):
 
 <pre>
-./build_packages --board=raspberrypi --withdev --nowithdebug --nousepkg --nowithautotest
+./build_packages --board=raspberrypi --withdev --nowithdebug --nowithautotest
 </pre>
 
-This will take even longer than building the toolchain took. Go get several coffees, and maybe read a book.
+Go get a nice cup of tea, and maybe read a book.
 
 Once all the packages have been successfully built, we can build a USB image by running the following command:
 

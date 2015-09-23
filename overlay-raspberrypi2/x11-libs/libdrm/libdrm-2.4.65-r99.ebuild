@@ -31,7 +31,7 @@ REQUIRED_USE="video_cards_exynos? ( libkms )
 	video_cards_vc4? ( libkms )
 	video_cards_rockchip? ( libkms )"
 RESTRICT="test" # see bug #236845
-RESTRICT="${RESTRICT} nomirror" #libdrm-2.4.61 not yet available on the Google mirror
+RESTRICT="${RESTRICT} nomirror" #libdrm-2.4.65 not yet available on the Google mirror
 
 RDEPEND="dev-libs/libpthread-stubs
 	udev? ( virtual/udev )
@@ -43,19 +43,12 @@ DEPEND="${RDEPEND}"
 
 XORG_EAUTORECONF=yes
 PATCHES=(
-	"${FILESDIR}"/0001-tests-install-test-programs.patch
-	"${FILESDIR}"/drm_rockchip-0001-add-support-for-rockchip.patch
-	"${FILESDIR}"/drm_mediatek-0001-add-support-for-mediatek.patch
-	"${FILESDIR}"/drm_mediatek-0002-tests-add-mediatek-to-modetest-kmstest-vbltest-and-p.patch
-	"${FILESDIR}"/drm_mediatek-0003-Add-DRM_FORMAT_MT12-for-Mediatek-Proprietary-video-blo.patch
+	"${FILESDIR}"/add-vc4.patch
 	"${FILESDIR}"/drm_vgem-0001-add-vgem-ioctl-macro-definitions.patch
 )
 
 src_prepare() {
 	xorg-2_src_prepare
-	if use drm_atomic; then
-		epatch ${FILESDIR}/drm_atomic-*.patch
-	fi
 }
 
 src_configure() {
@@ -70,6 +63,7 @@ src_configure() {
 		$(use_enable video_cards_radeon radeon)
 		$(use_enable video_cards_vmware vmwgfx)
 		$(use_enable video_cards_rockchip rockchip-experimental-api)
+		$(use_enable video_cards_vc4 vc4-experimental-api)
 		$(use_enable libkms)
 		$(use_enable manpages)
 		$(use_enable udev)

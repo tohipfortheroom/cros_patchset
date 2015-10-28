@@ -13,9 +13,9 @@ Prerequisites:
 
 To get started, make sure you have the following:
 
-* a 64-bit build machine, running Ubuntu version 10.04 (other versions/distros might work, but aren't supported, you're on your own)
+* a 64-bit build machine, running Ubuntu version 15.04 (better running headless. Other versions/distros might work)
 * an account with sudo access
-* at least 4GB of RAM (whilst you might be able to build with less, it'll be probably be painfully slow, especially when it comes to building Chrome)
+* at least 8GB of RAM (whilst you might be able to build with less, it will be painfully slow, especially when it comes to building Chrome)
 * a fast Internet connection - you'll need to download several gigabytes of source code, if your connection is slow, that won't be fun
 
 Get the code:

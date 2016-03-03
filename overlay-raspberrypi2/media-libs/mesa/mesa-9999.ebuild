@@ -66,7 +66,6 @@ RDEPEND="
 		x11-libs/libXxf86vm
 	)
 	dev-libs/expat
-	dev-libs/libgcrypt
 	virtual/udev
 	${LIBDRM_DEPSTRING}
 "
@@ -150,7 +149,6 @@ src_prepare() {
 	epatch "${FILESDIR}"/10.6-mesa-teximage-use-correct-extension-for-accept-stenc.patch
 	epatch "${FILESDIR}"/10.6-i965-Momentarily-pretend-to-support-ARB_texture_sten.patch
 	epatch "${FILESDIR}"/10.6-Revert-i965-Advertise-a-line-width-of-40.0-on-Cherry.patch
-	epatch "${FILESDIR}"/10.6-i965-gen9-Use-custom-MOCS-entries-set-up-by.patch
 
 	base_src_prepare
 

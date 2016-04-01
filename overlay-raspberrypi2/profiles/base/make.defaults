@@ -3,9 +3,6 @@
 
 VIDEO_CARDS="vc4"
 
-# Disable X11.
-USE="-X"
-
 # Use opengles instead of opengl
 USE="${USE} -opengl opengles"
 
